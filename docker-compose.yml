@@ -1,4 +1,4 @@
-name: w2w-essa
+name: youtube_downloader
 
 
 services:
@@ -27,7 +27,6 @@ services:
       - redis_data:/data
 
   bot:
-    image: cr.selcloud.ru/w2w/w2w-essa/app:development
     build:
       context: .
       dockerfile: Dockerfile
@@ -43,7 +42,6 @@ services:
       - redis
 
   admin-panel:
-    image: cr.selcloud.ru/w2w/w2w-essa/app:development
     build:
       context: .
       dockerfile: Dockerfile
@@ -61,7 +59,6 @@ services:
       - redis
 
   celery:
-    image: cr.selcloud.ru/w2w/w2w-essa/app:development
     build:
       context: .
       dockerfile: Dockerfile

@@ -33,7 +33,7 @@ case $SERVICE_TYPE in
         ;;
     "celery")
         echo "Starting Celery worker..."
-        uv run celery -A celery_app.tasks:app worker --beat -l info
+        uv run celery -A celery_app.tasks:app worker  -l info
         ;;
     *)
         echo "Invalid service type. Please use 'bot', 'admin_panel' or 'celery'"
