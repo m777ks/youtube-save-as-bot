@@ -1,0 +1,22 @@
+[project]
+name = "youtube-downloader"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "aiogram>=3.20.0.post0",
+    "alembic>=1.16.4",
+    "apscheduler>=3.11.0",
+    "asyncpg>=0.30.0",
+    "boto3>=1.39.8",
+    "celery>=5.5.3",
+    "django>=5.2.4",
+    "environs>=14.2.0",
+    "limited-aiogram>=1.0.2",
+    "psycopg>=3.2.9",
+    "pytube>=15.0.0",
+    "redis>=6.2.0",
+    "sqlalchemy>=2.0.42",
+    "yt-dlp>=2025.6.30",
+]
