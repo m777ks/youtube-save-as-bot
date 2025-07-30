@@ -24,12 +24,19 @@ async def check_s3_results(bot: Bot):
             url = url.decode() if url else None
 
             if url == "error":
-                await bot.send_message(user_id, ERROR_MSG)
+                await bot.send_message(user_id, ERROR_MSG, parse_mode='HTML')
             elif url:
                 button = InlineKeyboardButton(text="🔗 Скачать видео", url=url)
                 markup = InlineKeyboardMarkup(inline_keyboard=[[button]])
-                await bot.send_message(user_id, f"✅ Готово! <a href='{url_orig}'>Твое видео готово к скачиванию.</a>\nНажми на кнопку ниже:",
-                    reply_markup=markup, parse_mode='HTML')
+                await bot.send_message(
+                    user_id,
+                    f"✅ Готово! <a href='{url_orig}'>Твое видео готово к скачиванию.</a>\n"
+                    "Нажми на кнопку ниже, чтобы скачать файл.\n\n"
+                    "<b>Внимание:</b> ссылка будет действовать 12 часов!",
+                    reply_markup=markup,
+                    parse_mode='HTML'
+                )
+
                 await incr_download(user_id, url_orig)
                 await DataBase.log_download(user_id, url_orig)
 
@@ -39,7 +46,7 @@ async def check_s3_results(bot: Bot):
             await redis_client.delete(key)
             print(f'ERROR: send user: {key}, error: {e}')
 
-            await bot.send_message(user_id, ERROR_MSG)
+            await bot.send_message(user_id, ERROR_MSG, parse_mode='HTML')
 
 
 async def check_formats_ready(bot: Bot):
@@ -83,4 +90,4 @@ async def check_formats_ready(bot: Bot):
         except Exception as e:
             print(f"Ошибка при отправке форматов: {e}")
             await redis_client.delete(key)
-            await bot.send_message(user_id, ERROR_MSG)
+            await bot.send_message(user_id, ERROR_MSG, parse_mode='HTML')

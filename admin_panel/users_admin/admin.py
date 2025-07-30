@@ -10,9 +10,11 @@ class UsersAdmin(admin.ModelAdmin):
 @admin.register(Downloads)
 class DownloadsAdmin(admin.ModelAdmin):
     list_display = ('id', 'user_id', 'downloaded_at', 'url_orig')
+    list_filter = ('user_id',)
     search_fields = ('user_id',)
 
 @admin.register(Logger)
 class LoggerAdmin(admin.ModelAdmin):
     list_display = ('id', 'timestamp', 'user_id', 'user_name', 'type', 'action')
     search_fields = ('user_id', 'user_name', 'type', 'action')
+    list_filter = ('user_id',)

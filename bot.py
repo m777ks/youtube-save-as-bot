@@ -7,6 +7,7 @@ from aiogram.fsm.storage.redis import RedisStorage
 
 import handlers
 from config_data.config import ConfigEnv, load_config
+from middlewares.logger_middleware import LoggingMiddleware
 from redis_client.client_redis import redis_client
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
@@ -51,6 +52,9 @@ async def main():
 
     dp = Dispatcher(bot=bot, storage=storage)
 
+    # Регистрируем middleware
+    dp.callback_query.middleware(LoggingMiddleware())
+    dp.message.middleware(LoggingMiddleware())
 
     dp.include_router(handlers.router)
     dp.include_router(sender.router)

@@ -16,7 +16,7 @@ s3_client = boto3.client(
     aws_access_key_id=config.s3.key_id,
     aws_secret_access_key=config.s3.key_secret,
 )
-def upload_to_s3(file_stream, file_name, bucket_name=config.s3.name, expiration=129600):
+def upload_to_s3(file_stream, file_name, bucket_name=config.s3.name, expiration=43200):
     try:
         s3_client.upload_fileobj(file_stream, bucket_name, file_name)
         s3_url = s3_client.generate_presigned_url('get_object', Params={'Bucket': bucket_name, 'Key': file_name},

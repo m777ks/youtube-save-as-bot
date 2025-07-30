@@ -19,5 +19,5 @@ async def incr_download(user_id: int, url: str):
     key = f"downloads:{user_id}"
     pipe = redis_client.pipeline()
     pipe.incr(key)
-    pipe.expire(key, 60 * 60 * 24)
+    pipe.expire(key, 60 * 60 * 12)
     await pipe.execute()
