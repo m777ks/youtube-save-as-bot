@@ -1,3 +1,4 @@
+import os
 import sys
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -15,18 +16,14 @@ config: ConfigEnv = load_config()
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=zf)h!zy-4-h(%89-h*c3x1ahg7c9td=d(e2hv64&)h*ztg(s1'
+SECRET_KEY = os.getenv('DJANGO_SUPERUSER_USERNAME', 'django-insecure-=zf)h!zy-4-h(%89-h*c3x1ahg7c9td=d(e2hv64&)h*ztg(s1')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://essa-admin-dev.way2ar.com",
-    "https://essa-admin-prod.way2ar.com",
-    'https://4f8ad9fbc13d.ngrok-free.app'
-]
+CSRF_TRUSTED_ORIGINS = ['*']
 
 # Application definition
 
